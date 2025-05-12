@@ -71,12 +71,16 @@ ORDER BY
   file_month ASC;                     -- Order by month chronologically
 ```
 Key Findings:
-The analysis revealed that export values peaked in May and December, while the lowest export values were observed in August and September.
+The analysis revealed that export values peaked in May and December, while the lowest export values were observed in August and January.
+
+![Monthly Export Trend Chart](./monthly_export_trend_chart_v2.png)
 
 
+## Top 10 Export Destinations
 
+Identifying the primary countries to which New Zealand exports its goods is crucial for understanding its key trading partners. This analysis pinpoints the top 10 export destination countries based on the total Free On Board (FOB) value for the year 2024.
 
-## Identifying Top Export Destinations:** The following query was executed to identify the top 10 export destination countries.
+The following SQL query was used to determine these top 10 countries:
 
 ```sql
 SELECT
@@ -90,6 +94,10 @@ ORDER BY
   total_fob_for_country DESC        
 LIMIT 10;
 ```
+Key Findings:
+The top 10 export destinations for New Zealand in 2024 were:
+
+
 
 ## Identifying Top Export Commodities:** The following query was executed to identify the top 10 export commodities by FOB value.
 
