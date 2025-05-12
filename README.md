@@ -1,5 +1,4 @@
 
-# Project Title:
 # Analysis of New Zealand's 2024 Export Data using BigQuery and SQL
 
 ## Summary
@@ -10,7 +9,7 @@ The primary purpose of this analysis is to identify New Zealand's main export de
 ## Data Used
 
 - Data Source: Stats NZ "Overseas merchandise trade datasets"
-- Period: January 2024 - December 2024 (or 01/2024 - 12/2024)
+- Period: January 2024 - December 2024 
 - Key Columns: country (destination country), hs_desc (commodity description), total_export_FOB (total export Free On Board value), month, etc.
 
 ## Tools and Platforms Used
@@ -20,9 +19,12 @@ The primary purpose of this analysis is to identify New Zealand's main export de
 
 ## Analyse process
 
-1. 12ヶ月分の月次輸出データCSVをBigQueryの各月テーブルにロードしました。
-2. 以下のSQLクエリを使用して、12ヶ月分のデータを統合するビュー `all_exports_2024` を作成しました。
+1.  **Data Loading:** Monthly export data for all 12 months of 2024 (in CSV format) was loaded into separate monthly tables in BigQuery.
+  
+2.  **Data Aggregation:** The following SQL query was used to create a consolidated view named `all_exports_2024`, which combines the data from all 12 monthly tables.
+   
 
+ 
 ```sql  
 CREATE OR REPLACE VIEW `elegant-rock-451218-q4.nz_exports.all_exports_2024` AS
 SELECT *, '2024-01' AS file_month FROM `elegant-rock-451218-q4.nz_exports.exports_2024_01`
@@ -48,8 +50,33 @@ UNION ALL
 SELECT *, '2024-11' AS file_month FROM `elegant-rock-451218-q4.nz_exports.exports_2024_11`
 UNION ALL
 SELECT *, '2024-12' AS file_month FROM `elegant-rock-451218-q4.nz_exports.exports_2024_12`;
+```
 
-## 上位10輸出国を特定するために、以下のクエリを実行しました。
+## Monthly Export Trends
+
+To understand the export performance over time, an analysis of the monthly total export FOB value was conducted. 
+This helps to identify any seasonal patterns or significant fluctuations in export revenue throughout the year 2024.
+
+The following SQL query was used to retrieve the total export FOB value for each month:
+
+```sql
+SELECT
+  file_month,                         -- Month (YYYY-MM format)
+  SUM(total_export_FOB) AS monthly_total_fob -- Total export FOB value for the month
+FROM
+  `elegant-rock-451218-q4.nz_exports.all_exports_2024` -- Your aggregated view
+GROUP BY
+  file_month                          -- Aggregate by month
+ORDER BY
+  file_month ASC;                     -- Order by month chronologically
+```
+Key Findings:
+The analysis revealed that export values peaked in May and December, while the lowest export values were observed in August and September.
+
+
+
+
+## Identifying Top Export Destinations:** The following query was executed to identify the top 10 export destination countries.
 
 ```sql
 SELECT
@@ -62,19 +89,24 @@ GROUP BY
 ORDER BY
   total_fob_for_country DESC        
 LIMIT 10;
+```
 
-## 上位10輸出品目を特定するために、以下のクエリを実行しました。
+## Identifying Top Export Commodities:** The following query was executed to identify the top 10 export commodities by FOB value.
+
 ```sql
 SELECT
-  hs_desc,                            -- 品目（HSコードの説明）を表すカラム
-  SUM(total_export_FOB) AS total_fob_for_hs_desc -- 品目ごとの総輸出FOB価額
+  hs_desc,                           
+  SUM(total_export_FOB) AS total_fob_for_hs_desc
 FROM
-  `elegant-rock-451218-q4.nz_exports.all_exports_2024` -- create viewー
+  `elegant-rock-451218-q4.nz_exports.all_exports_2024`
 GROUP BY
-  hs_desc                             -- 品目ごとに集計
+  hs_desc                            
 ORDER BY
-  total_fob_for_hs_desc DESC          -- 総輸出FOB価額が多い順に並べ替え
-LIMIT 10;                             -- 上位10品目に絞り込み
+  total_fob_for_hs_desc DESC          
+LIMIT 10;                             
+```
+
+
 
 分析結果
 上位10輸出国
@@ -96,7 +128,7 @@ LIMIT 10;                             -- 上位10品目に絞り込み
 [その他、気づいたことや、この分析から考えられることなどを書く]
 連絡先
 LinkedIn: [あなたのLinkedInプロフィールのURL]
-Email: [あなたのメールアドレス (公開しても良ければ)]
+
 
 
 
