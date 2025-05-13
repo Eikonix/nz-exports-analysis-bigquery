@@ -64,7 +64,7 @@ SELECT
   file_month,                         -- Month (YYYY-MM format)
   SUM(total_export_FOB) AS monthly_total_fob -- Total export FOB value for the month
 FROM
-  `elegant-rock-451218-q4.nz_exports.all_exports_2024` -- Your aggregated view
+  `elegant-rock-451218-q4.nz_exports.all_exports_2024` -- Aggregated view
 GROUP BY
   file_month                          -- Aggregate by month
 ORDER BY
@@ -97,22 +97,32 @@ LIMIT 10;
 Key Findings:
 The top 10 export destinations for New Zealand in 2024 were:
 
+![Top 10 Export Destinations Chart](./export_destinations_chart.png)
+
+A key finding from this analysis is that China is by far the largest export destination, with a total export FOB value more than double that of the next leading countries, the United States and Australia.
 
 
-## Identifying Top Export Commodities:** The following query was executed to identify the top 10 export commodities by FOB value.
+## Top 10 Export Commodities
+
+This part of the analysis focuses on determining the top 10 export commodities based on their total Free On Board (FOB) value in 2024.
+
+The following SQL query was used to identify these leading commodities:
 
 ```sql
 SELECT
-  hs_desc,                           
-  SUM(total_export_FOB) AS total_fob_for_hs_desc
+  hs_desc,                            -- Commodity description (from HS code)
+  SUM(total_export_FOB) AS total_fob_for_hs_desc -- Total export FOB value for the commodity
 FROM
-  `elegant-rock-451218-q4.nz_exports.all_exports_2024`
+  `elegant-rock-451218-q4.nz_exports.all_exports_2024` -- Aggregated view
 GROUP BY
-  hs_desc                            
+  hs_desc                             -- Aggregate by commodity description
 ORDER BY
-  total_fob_for_hs_desc DESC          
-LIMIT 10;                             
+  total_fob_for_hs_desc DESC          -- Order by total FOB value
+LIMIT 10;                             -- Limit to the top 10 commodities                          
 ```
+Key Findings:
+The analysis highlighted the following as the top 10 export commodities for New Zealand in 2024:
+
 
 
 
