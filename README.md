@@ -123,29 +123,24 @@ LIMIT 10;                             -- Limit to the top 10 commodities
 Key Findings:
 The analysis highlighted the following as the top 10 export commodities for New Zealand in 2024:
 
+![Top 10 Export Commodities Chart](./commodities_chart.png)
 
+Among these, a particularly significant finding is that whole milk powder, a key dairy product, stands out as New Zealand's foremost export commodity. Its export value was exceptionally high in 2024, exceeding three times the value of any other single leading commodity.
 
+## Conclusion
 
-分析結果
-上位10輸出国
-順位	国名	総輸出FOB価額 (NZD)
-1	[実際の国名]	[実際の金額]
-2	[実際の国名]	[実際の金額]
-...	...	...
-10	[実際の国名]	[実際の金額]
-(ここにBigQueryで得られた結果の表をMarkdownの表形式で書くか、後述する画像で貼り付けます)
-上位10輸出品目
-順位	品目	総輸出FOB価額 (NZD)
-1	[実際の品目名]	[実際の金額]
-2	[実際の品目名]	[実際の金額]
-...	...	...
-10	[実際の品目名]	[実際の金額]
-(同様に結果を記載)
-考察
-この分析から、2024年のニュージーランドの輸出において、[国名]が最大の輸出相手国であり、[品目名]が最も輸出額の大きい品目であることが明らかになりました。
-[その他、気づいたことや、この分析から考えられることなどを書く]
-連絡先
-LinkedIn: [あなたのLinkedInプロフィールのURL]
+This analysis of New Zealand's 2024 export data using BigQuery and SQL provided valuable insights into its trade patterns. Key takeaways include the identification of China as the dominant export market and whole milk powder as the leading export commodity by a significant margin. Furthermore, monthly trend analysis revealed peak export months in May and December. While this analysis was based on a straightforward aggregation of the available data, it successfully highlighted major characteristics of New Zealand's export landscape in 2024.
+
+## Limitations
+
+**External Factors:** The impact of global economic conditions, trade agreements, or specific geopolitical events on export figures was not explicitly analyzed.
+
+## Future Work / Potential Further Analysis
+
+*   **Advanced Statistical Analysis:** Employ statistical methods to identify correlations or build predictive models for export demand.
+*   **Data Cleaning and Standardization:** Implement more robust data cleaning processes, including standardization of country names, for more precise results.
+*   **Interactive Dashboard:** Develop an interactive dashboard (e.g., using Looker Studio or other BI tools) to allow for more dynamic exploration of the data.
+
 
 
 
